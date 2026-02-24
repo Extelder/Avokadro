@@ -1,0 +1,40 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using Zenject;
+
+public class GameSceneInstaller : MonoInstaller
+{
+    [SerializeField] private Camera _camera;
+    [SerializeField] private DeckConfig _deckConfig;
+    [SerializeField] private HandConfig _handConfig;
+    [SerializeField] private GameObject _deckPrefab;
+    [SerializeField] private GameObject _handPrefab;
+    [SerializeField] private Transform _spawnPoint;
+
+    public override void InstallBindings()
+    {
+        DeckView deckView = Container.InstantiatePrefabForComponent<DeckView>(
+            _deckPrefab,
+            _spawnPoint.position,
+            Quaternion.identity,
+            null);
+        Container.Bind<IDeckContainable>().FromInstance(deckView);
+        
+        HandView handView = Container.InstantiatePrefabForComponent<HandView>(
+            _handPrefab,
+            _spawnPoint.position,
+            Quaternion.identity,
+            null);
+        Container.Bind<IHandContainable>().FromInstance(handView);
+
+        Container.Bind<Camera>().FromInstance(_camera);
+        Container.Bind<DeckConfig>().FromInstance(_deckConfig);
+        Container.Bind<HandConfig>().FromInstance(_handConfig);
+
+        Container.Bind<DeckHandler>().To<DefaultDeckHandler>().FromNew().AsSingle();
+        Container.BindInterfacesAndSelfTo<Deck>().FromNew().AsSingle();
+        Container.BindInterfacesAndSelfTo<Hand>().FromNew().AsSingle();
+        Container.BindInterfacesAndSelfTo<HandHandler>().FromNew().AsSingle();
+    }
+}

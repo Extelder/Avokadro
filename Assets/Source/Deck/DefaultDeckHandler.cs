@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Zenject;
 
-public class DefaultDeckHandler : DeckHandler
+public class DefaultDeckHandler : DeckHandler, IInitializable
 {
     public override void Add(List<Card> cards, Card card)
     {
@@ -21,5 +22,9 @@ public class DefaultDeckHandler : DeckHandler
             checkCard.Suit == needCard.Suit && checkCard.Rank == needCard.Rank);
         chosenCard = foundCard;
         return foundCard != null;
+    }
+
+    public void Initialize()
+    {
     }
 }

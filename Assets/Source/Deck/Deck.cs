@@ -1,32 +1,67 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
+using Random = UnityEngine.Random;
 
-public class Deck
+public class Deck : IDisposable, IInitializable
 {
-    protected DeckHandler deckHandler;
     public List<Card> Cards = new List<Card>();
 
-    public Deck(DeckHandler handler)
+    private DeckHandler _deckHandler;
+    private DeckConfig _config;
+    private IDeckContainable _deckContainable;
+
+    public Deck(DeckHandler handler, DeckConfig config, IDeckContainable deckContainable)
     {
-        deckHandler = handler;
+        _deckHandler = handler;
+        _config = config;
+        _deckContainable = deckContainable;
+        FillDeck();
+    }
+
+    public void FillDeck()
+    {
+        for (int i = 0; i < _config.DeckDefaultCapacity; i++)
+        {
+            Add(new Card(_deckContainable.CardDatas[i]));
+        }
     }
 
     public void Add(Card card)
     {
-        deckHandler.Add(Cards, card);
+        _deckHandler.Add(Cards, card);
     }
 
     public void PutAway(Card card)
     {
-        deckHandler.PutAway(Cards, card);
+        _deckHandler.PutAway(Cards, card);
     }
 
     public Card Take(Card card)
     {
-        if (deckHandler.TryTake(Cards, card, out card))
+        if (_deckHandler.TryTake(Cards, card, out card))
             return card;
         return null;
+    }
+
+    public Card Take()
+    {
+        Debug.Log("TAKE" + Cards.Count);
+        Card card = Cards[Random.Range(0, Cards.Count - 1)];
+        return card;
+        /*Card card = Cards[Random.Range(0, Cards.Count - 1)];
+        if (_deckHandler.TryTake(Cards, card, out card))
+            return card;
+        return null;*/
+    }
+    
+    public void Initialize()
+    {
+    }
+
+    public void Dispose()
+    {
     }
 }
