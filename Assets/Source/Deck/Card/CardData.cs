@@ -28,10 +28,10 @@ public enum Rank
 }
 
 
-[CreateAssetMenu(menuName = "Card/Deck")]
+[CreateAssetMenu(menuName = "Deck/Card")]
 public class CardData : ScriptableObject
 {
-    public Suit Suit { get; set; }
-    public Rank Rank { get; set; }
-    public Sprite Icon { get; set; }
+    [field: SerializeField] public Suit Suit { get; private set; }
+    [field: SerializeField] public Rank Rank { get; private set; }
+    [field: SerializeField] public Sprite Icon { get; private set; }
 }
