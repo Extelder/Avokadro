@@ -48,13 +48,10 @@ public class Deck : IDisposable, IInitializable
 
     public Card Take()
     {
-        Debug.Log("TAKE" + Cards.Count);
         Card card = Cards[Random.Range(0, Cards.Count - 1)];
-        return card;
-        /*Card card = Cards[Random.Range(0, Cards.Count - 1)];
         if (_deckHandler.TryTake(Cards, card, out card))
             return card;
-        return null;*/
+        return null;
     }
     
     public void Initialize()
