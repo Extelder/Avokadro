@@ -10,5 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c8d8d7357cf35964d8e3affc0e07e383, type: 3}
-  m_Name: New Card Data
+  m_Name: Nine_of_Diamonds
   m_EditorClassIdentifier: 
+  <Suit>k__BackingField: 1
+  <Rank>k__BackingField: 7
+  <Icon>k__BackingField: {fileID: 21300000, guid: fd7da625c8634224bab39bc2b3c7380c, type: 3}

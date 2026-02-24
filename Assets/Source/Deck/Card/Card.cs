@@ -6,10 +6,12 @@ public class Card
 {
     public Suit Suit { get; set; }
     public Rank Rank { get; set; }
+    public CardData CardData { get; set; }
 
     public Card(CardData cardData)
     {
         Suit = cardData.Suit;
         Rank = cardData.Rank;
+        CardData = cardData;
     }
 }
