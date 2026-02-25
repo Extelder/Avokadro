@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: New Combinations Config
+  m_EditorClassIdentifier: Assembly-CSharp::CombinationsConfig
+  <Combinations>k__BackingField:
+  - <Priority>k__BackingField: 0
+    _combinationType:
+    - rid: 1925277325199671296
+  references:
+    version: 2
+    RefIds:
+    - rid: 1925277325199671296
+      type: {class: CompareCombinationType, ns: , asm: Assembly-CSharp}
+      data:
+        <MatchesToFound>k__BackingField: 3
+        <MatchType>k__BackingField: 2
+        <NullAfterFoundMatch>k__BackingField: 0

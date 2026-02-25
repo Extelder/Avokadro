@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UniRx;
@@ -7,11 +8,14 @@ using Zenject;
 
 public class CardSelector
 {
-    [Inject] private Camera _camera;
 
     private CompositeDisposable _disposable = new CompositeDisposable();
 
-    public CardSelector(List<CardVisual> cardsToChoose, DiContainer container)
+    private List<CardVisual> _selectedCardVisuals = new List<CardVisual>();
+
+    public event Action<List<CardVisual>> SelectedCardsChanged;
+
+    public CardSelector(List<CardVisual> cardsToChoose, DiContainer container, ref List<CardVisual> selectedCards)
     {
         container.Inject(this);
         foreach (var card in cardsToChoose)
@@ -19,9 +23,23 @@ public class CardSelector
             Debug.Log("START FOREACH");
             card.CardImage.OnPointerClickAsObservable().Subscribe(_ =>
             {
+                OnCardClicked(card);
                 Debug.Log("ddddYAICA");
             }).AddTo(_disposable);
         }
+    }
+
+    public void OnCardClicked(CardVisual cardVisual)
+    {
+        if (_selectedCardVisuals.Contains(cardVisual))
+        {
+            _selectedCardVisuals.Remove(cardVisual);
+            SelectedCardsChanged?.Invoke(_selectedCardVisuals);
+            return;
+        }
+
+        _selectedCardVisuals.Add(cardVisual);
+        SelectedCardsChanged?.Invoke(_selectedCardVisuals);
     }
 
     ~CardSelector()

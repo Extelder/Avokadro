@@ -1,0 +1,115 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: PokerCombinations
+  m_EditorClassIdentifier: Assembly-CSharp::CombinationsConfig
+  <Combinations>k__BackingField:
+  - <Name>k__BackingField: High Card
+    <Priority>k__BackingField: 1
+    _combinationType: []
+  - <Name>k__BackingField: Pair
+    <Priority>k__BackingField: 2
+    _combinationType:
+    - rid: 1925277325199671310
+  - <Name>k__BackingField: Two Pair
+    <Priority>k__BackingField: 3
+    _combinationType:
+    - rid: 1925277325199671311
+    - rid: 1925277325199671312
+  - <Name>k__BackingField: Three of a Kind
+    <Priority>k__BackingField: 4
+    _combinationType:
+    - rid: 1925277325199671313
+  - <Name>k__BackingField: Straight
+    <Priority>k__BackingField: 5
+    _combinationType:
+    - rid: 1925277325199671314
+  - <Name>k__BackingField: Flush
+    <Priority>k__BackingField: 6
+    _combinationType:
+    - rid: 1925277325199671315
+  - <Name>k__BackingField: Full House
+    <Priority>k__BackingField: 7
+    _combinationType:
+    - rid: 1925277325199671316
+    - rid: 1925277325199671317
+  - <Name>k__BackingField: Four of a Kind
+    <Priority>k__BackingField: 8
+    _combinationType:
+    - rid: 1925277325199671318
+  - <Name>k__BackingField: Straight Flush
+    <Priority>k__BackingField: 9
+    _combinationType:
+    - rid: 1925277325199671319
+  - <Name>k__BackingField: Royal Flush
+    <Priority>k__BackingField: 10
+    _combinationType:
+    - rid: 1925277325199671320
+  references:
+    version: 2
+    RefIds:
+    - rid: 1925277325199671310
+      type: {class: CompareCombinationType, ns: , asm: Assembly-CSharp}
+      data:
+        <MatchesToFound>k__BackingField: 2
+        <MatchType>k__BackingField: 0
+        <NullAfterFoundMatch>k__BackingField: 1
+    - rid: 1925277325199671311
+      type: {class: CompareCombinationType, ns: , asm: Assembly-CSharp}
+      data:
+        <MatchesToFound>k__BackingField: 2
+        <MatchType>k__BackingField: 0
+        <NullAfterFoundMatch>k__BackingField: 1
+    - rid: 1925277325199671312
+      type: {class: CompareCombinationType, ns: , asm: Assembly-CSharp}
+      data:
+        <MatchesToFound>k__BackingField: 2
+        <MatchType>k__BackingField: 0
+        <NullAfterFoundMatch>k__BackingField: 1
+    - rid: 1925277325199671313
+      type: {class: CompareCombinationType, ns: , asm: Assembly-CSharp}
+      data:
+        <MatchesToFound>k__BackingField: 3
+        <MatchType>k__BackingField: 0
+        <NullAfterFoundMatch>k__BackingField: 0
+    - rid: 1925277325199671314
+      type: {class: StraightCombinationType, ns: , asm: Assembly-CSharp}
+      data:
+        <SameSuitRequired>k__BackingField: 0
+    - rid: 1925277325199671315
+      type: {class: FlushCombinationType, ns: , asm: Assembly-CSharp}
+      data: 
+    - rid: 1925277325199671316
+      type: {class: CompareCombinationType, ns: , asm: Assembly-CSharp}
+      data:
+        <MatchesToFound>k__BackingField: 3
+        <MatchType>k__BackingField: 0
+        <NullAfterFoundMatch>k__BackingField: 0
+    - rid: 1925277325199671317
+      type: {class: CompareCombinationType, ns: , asm: Assembly-CSharp}
+      data:
+        <MatchesToFound>k__BackingField: 2
+        <MatchType>k__BackingField: 0
+        <NullAfterFoundMatch>k__BackingField: 1
+    - rid: 1925277325199671318
+      type: {class: CompareCombinationType, ns: , asm: Assembly-CSharp}
+      data:
+        <MatchesToFound>k__BackingField: 4
+        <MatchType>k__BackingField: 0
+        <NullAfterFoundMatch>k__BackingField: 0
+    - rid: 1925277325199671319
+      type: {class: StraightCombinationType, ns: , asm: Assembly-CSharp}
+      data:
+        <SameSuitRequired>k__BackingField: 1
+    - rid: 1925277325199671320
+      type: {class: RoyalFlushType, ns: , asm: Assembly-CSharp}
+      data: 
