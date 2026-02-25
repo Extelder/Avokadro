@@ -10,6 +10,7 @@ public class GameSceneInstaller : MonoInstaller
     [SerializeField] private HandConfig _handConfig;
     [SerializeField] private GameObject _deckPrefab;
     [SerializeField] private GameObject _handPrefab;
+    [SerializeField] private GameObject _tarotViewPrefab;
     
     [SerializeField] private CardVisual _cardVisualPrefab;
     [SerializeField] private Transform _spawnPoint;
@@ -17,6 +18,9 @@ public class GameSceneInstaller : MonoInstaller
 
     public override void InstallBindings()
     {
+        Container.BindInterfacesAndSelfTo<DeckConfig>().FromInstance(_deckConfig);
+        Container.Bind<HandConfig>().FromInstance(_handConfig);
+        
         Container.Bind<CardVisual>().FromInstance(_cardVisualPrefab);
         DeckView deckView = Container.InstantiatePrefabForComponent<DeckView>(
             _deckPrefab,
@@ -29,11 +33,15 @@ public class GameSceneInstaller : MonoInstaller
             _handPrefab,
             _spawnParent);
         Container.Bind<IHandContainable>().FromInstance(handView);
+        
+        TarotCardView tarotCardView = Container.InstantiatePrefabForComponent<TarotCardView>(
+            _tarotViewPrefab,
+            _spawnParent);
+        Container.Bind<ITarotCardViewable>().FromInstance(tarotCardView);
 
         Container.Bind<Camera>().FromInstance(_camera);
-        Container.Bind<DeckConfig>().FromInstance(_deckConfig);
-        Container.Bind<HandConfig>().FromInstance(_handConfig);
 
+        Container.BindInterfacesAndSelfTo<TarotCard>().FromNew().AsSingle();
         Container.Bind<DeckHandler>().To<DefaultDeckHandler>().FromNew().AsSingle();
         Container.BindInterfacesAndSelfTo<Deck>().FromNew().AsSingle();
         Container.BindInterfacesAndSelfTo<Hand>().FromNew().AsSingle();
