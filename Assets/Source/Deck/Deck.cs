@@ -18,6 +18,7 @@ public class Deck : IDisposable, IInitializable
         _deckHandler = handler;
         _config = config;
         _deckContainable = deckContainable;
+        Debug.Log("FILLLLLLLLL");
         FillDeck();
     }
 
@@ -31,12 +32,12 @@ public class Deck : IDisposable, IInitializable
 
     public void Add(Card card)
     {
-        _deckHandler.Add(Cards, card);
+        _deckHandler.Add(ref Cards, card);
     }
 
     public void PutAway(Card card)
     {
-        _deckHandler.PutAway(Cards, card);
+        _deckHandler.PutAway(ref Cards, card);
     }
 
     public Card Take(Card card)
@@ -49,8 +50,8 @@ public class Deck : IDisposable, IInitializable
     public Card Take()
     {
         Card card = Cards[Random.Range(0, Cards.Count - 1)];
-        if (_deckHandler.TryTake(Cards, card, out card))
-            return card;
+        if (_deckHandler.TryTake(Cards, card, out Card outcard))
+            return outcard;
         return null;
     }
     

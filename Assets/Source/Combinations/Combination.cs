@@ -4,11 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Combination/New Combination Config")]
-public class CombinationsConfig : ScriptableObject
-{
-    [field: SerializeField] public Combination[] Combinations { get; private set; }
-}
 
 [Serializable]
 public class Combination
@@ -142,6 +137,7 @@ public class CompareCombinationType : CombinationType
             case MatchType.Rank:
                 for (int j = 0; j < cardsList.Count; j++)
                 {
+                    Debug.Log(cardsList[j]);
                     int count = cardsList.Count(x => x.Rank == cardsList[j].Rank);
                     if (count >= MatchesToFound)
                     {
@@ -260,7 +256,7 @@ public static class CardCombinationExtensions
 
         return GetBestCombination(cards.ToArray(), config);
     }
-    
+
     public static Combination GetBestCombination(
         this List<CardVisual> cards,
         CombinationsConfig config)
@@ -272,8 +268,9 @@ public static class CardCombinationExtensions
         for (int i = 0; i < defcards.Length; i++)
         {
             defcards[i] = cards[i].Card;
+            Debug.Log(defcards[i]);
         }
-        
+
         return GetBestCombination(defcards, config);
     }
 }

@@ -8,10 +8,11 @@ public class GameSceneInstaller : MonoInstaller
     [SerializeField] private Camera _camera;
     [SerializeField] private DeckConfig _deckConfig;
     [SerializeField] private HandConfig _handConfig;
+    [SerializeField] private CombinationsConfig _combinationsConfig;
     [SerializeField] private GameObject _deckPrefab;
     [SerializeField] private GameObject _handPrefab;
     [SerializeField] private GameObject _tarotViewPrefab;
-    
+
     [SerializeField] private CardVisual _cardVisualPrefab;
     [SerializeField] private Transform _spawnPoint;
     [SerializeField] private Transform _spawnParent;
@@ -20,7 +21,9 @@ public class GameSceneInstaller : MonoInstaller
     {
         Container.BindInterfacesAndSelfTo<DeckConfig>().FromInstance(_deckConfig);
         Container.Bind<HandConfig>().FromInstance(_handConfig);
-        
+        Container.Bind<CombinationsConfig>().FromInstance(_combinationsConfig);
+        Container.Bind<CombinationContainer>().FromNew().AsSingle();
+
         Container.Bind<CardVisual>().FromInstance(_cardVisualPrefab);
         DeckView deckView = Container.InstantiatePrefabForComponent<DeckView>(
             _deckPrefab,
@@ -28,12 +31,12 @@ public class GameSceneInstaller : MonoInstaller
             Quaternion.identity,
             null);
         Container.Bind<IDeckContainable>().FromInstance(deckView);
-        
+
         HandView handView = Container.InstantiatePrefabForComponent<HandView>(
             _handPrefab,
             _spawnParent);
         Container.Bind<IHandContainable>().FromInstance(handView);
-        
+
         TarotCardView tarotCardView = Container.InstantiatePrefabForComponent<TarotCardView>(
             _tarotViewPrefab,
             _spawnParent);

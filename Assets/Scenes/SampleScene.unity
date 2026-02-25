@@ -370,6 +370,7 @@ MonoBehaviour:
   _camera: {fileID: 519420031}
   _deckConfig: {fileID: 11400000, guid: 62ccedc6f916c3a49abb988376453e51, type: 2}
   _handConfig: {fileID: 11400000, guid: 68d3e1a0a7544c940b5bfa3c2cdb6186, type: 2}
+  _combinationsConfig: {fileID: 11400000, guid: f92c7599402b3154d9f8d040e84980c0, type: 2}
   _deckPrefab: {fileID: 455110315845702003, guid: 765b5e30e0ce8b946b6641bd6f55eae0, type: 3}
   _handPrefab: {fileID: 3798110696912071307, guid: 8833e9799ae063146945e6644dea0660, type: 3}
   _tarotViewPrefab: {fileID: 3575558712329121226, guid: a91bbe25adad33f4b91bfa94d24babac, type: 3}

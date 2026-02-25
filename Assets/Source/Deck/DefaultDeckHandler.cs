@@ -6,12 +6,12 @@ using Zenject;
 
 public class DefaultDeckHandler : DeckHandler, IInitializable
 {
-    public override void Add(List<Card> cards, Card card)
+    public override void Add(ref List<Card> cards, Card card)
     {
         cards.Add(card);
     }
 
-    public override void PutAway(List<Card> cards, Card card)
+    public override void PutAway(ref List<Card> cards, Card card)
     {
         cards.Remove(card);
     }

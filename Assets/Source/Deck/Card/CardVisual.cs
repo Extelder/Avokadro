@@ -10,6 +10,7 @@ public abstract class CardVisual : MonoBehaviour
 
     public virtual void Init(Card card)
     {
+        Card = card;
         CardImage.sprite = card.CardData.Icon;
     }
 }

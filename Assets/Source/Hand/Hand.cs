@@ -12,15 +12,24 @@ public class Hand
 
     private List<CardVisual> _selectedCards = new List<CardVisual>();
 
-    public Hand(DiContainer container)
+    private CombinationContainer _combinationContainer;
+
+    public Hand(DiContainer container, CombinationContainer combinationContainer)
     {
         Debug.Log("JHAF");
         _container = container;
+        _combinationContainer = combinationContainer;
     }
 
     public void SpawnSelector(List<CardVisual> cardVisuals)
     {
         _cardSelector = new CardSelector(cardVisuals, _container, ref _selectedCards);
+        for (int i = 0; i < cardVisuals.Count; i++)
+        {
+            Debug.Log(cardVisuals[i].Card);
+        }
+
+        Debug.Log(cardVisuals.GetBestCombination(_combinationContainer.CombinationsConfig).Name);
         _cardSelector.SelectedCardsChanged += OnSelectedCardsChanged;
     }
 
