@@ -15,7 +15,6 @@ public class HandHandler : IInitializable
 
     public HandHandler(Hand hand, IHandContainable handContainable, HandConfig config, Deck deck, CardVisual cardVisual)
     {
-        Debug.Log("faw");
         _cardVisual = cardVisual;
         _handContainable = handContainable;
         _hand = hand;
@@ -25,7 +24,6 @@ public class HandHandler : IInitializable
 
     public void FillHand()
     {
-        Debug.Log("FILL HAND");
         int cardsToSpawnCount = _config.CardsCapacity - _hand.Cards.Count;
         for (int i = 0; i < cardsToSpawnCount; i++)
         {
@@ -41,7 +39,6 @@ public class HandHandler : IInitializable
         cardVisual.Init(card);
         _spawnedCardVisuals.Add(cardVisual);
         _hand.Cards.Add(card);
-        Debug.Log("HAND ADDED");
     }
 
     public void Initialize()
