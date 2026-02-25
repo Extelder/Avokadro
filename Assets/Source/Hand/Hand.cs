@@ -16,7 +16,6 @@ public class Hand
 
     public Hand(DiContainer container, CombinationContainer combinationContainer)
     {
-        Debug.Log("JHAF");
         _container = container;
         _combinationContainer = combinationContainer;
     }

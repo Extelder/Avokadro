@@ -18,7 +18,6 @@ public class Deck : IDisposable, IInitializable
         _deckHandler = handler;
         _config = config;
         _deckContainable = deckContainable;
-        Debug.Log("FILLLLLLLLL");
         FillDeck();
     }
 

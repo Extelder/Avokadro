@@ -24,7 +24,6 @@ public class TarotCardView : MonoBehaviour, ITarotCardViewable
         if (Input.GetKeyDown(KeyCode.A))
         {
             Use();
-            Debug.Log("KEY");
         }
     }
 
