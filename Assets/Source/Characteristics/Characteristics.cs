@@ -1,13 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public abstract class Characteristics<T>
 {
-    public T CurrentValue { get; set; }
-
-    public virtual void ChangeValue(T value)
+    public virtual void Inject(DiContainer container)
     {
-        CurrentValue = value;
+        container.Inject(this);
     }
+    public abstract void ChangeValue(T value);
 }
