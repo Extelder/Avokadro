@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
@@ -8,7 +9,6 @@ using Zenject;
 
 public class CardSelector
 {
-
     private CompositeDisposable _disposable = new CompositeDisposable();
 
     private List<CardVisual> _selectedCardVisuals = new List<CardVisual>();
@@ -33,11 +33,13 @@ public class CardSelector
     {
         if (_selectedCardVisuals.Contains(cardVisual))
         {
+            cardVisual.transform.DOLocalMoveY(0, 0.2f);
             _selectedCardVisuals.Remove(cardVisual);
             SelectedCardsChanged?.Invoke(_selectedCardVisuals);
             return;
         }
 
+        cardVisual.transform.DOLocalMoveY(100f, 0.2f);
         _selectedCardVisuals.Add(cardVisual);
         SelectedCardsChanged?.Invoke(_selectedCardVisuals);
     }

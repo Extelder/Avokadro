@@ -29,7 +29,6 @@ public class Hand
             Debug.Log(cardVisuals[i].Card);
         }
 
-        Debug.Log(cardVisuals.GetBestCombination(_combinationContainer.CombinationsConfig).Name);
         _cardSelector.SelectedCardsChanged += OnSelectedCardsChanged;
     }
 
@@ -40,6 +39,7 @@ public class Hand
 
     private void OnSelectedCardsChanged(List<CardVisual> cards)
     {
+        Debug.Log(cards.GetBestCombination(_combinationContainer.CombinationsConfig).Name);
         //Combination combination = cards.GetBestCombination()
     }
 

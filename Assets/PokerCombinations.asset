@@ -93,13 +93,13 @@ MonoBehaviour:
       data:
         <MatchesToFound>k__BackingField: 3
         <MatchType>k__BackingField: 0
-        <NullAfterFoundMatch>k__BackingField: 0
+        <NullAfterFoundMatch>k__BackingField: 1
     - rid: 1925277325199671328
       type: {class: CompareCombinationType, ns: , asm: Assembly-CSharp}
       data:
         <MatchesToFound>k__BackingField: 2
         <MatchType>k__BackingField: 0
-        <NullAfterFoundMatch>k__BackingField: 1
+        <NullAfterFoundMatch>k__BackingField: 0
     - rid: 1925277325199671329
       type: {class: CompareCombinationType, ns: , asm: Assembly-CSharp}
       data:

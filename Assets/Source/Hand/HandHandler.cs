@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using Zenject;
 
 public class HandHandler : IInitializable
 {
     private List<CardVisual> _spawnedCardVisuals = new List<CardVisual>();
-    
+
     private CardVisual _cardVisual;
     private HandConfig _config;
     private Deck _deck;
@@ -31,6 +32,7 @@ public class HandHandler : IInitializable
         {
             SpawnCard();
         }
+
         _hand.SpawnSelector(_spawnedCardVisuals);
     }
 
@@ -38,6 +40,8 @@ public class HandHandler : IInitializable
     {
         Card card = _deck.Take();
         CardVisual cardVisual = MonoBehaviour.Instantiate(_cardVisual, _handContainable.DefaultSpawnParent);
+        cardVisual.transform.DOLocalMoveY(0, 0.2f);
+
         cardVisual.Init(card);
         _spawnedCardVisuals.Add(cardVisual);
         _hand.Cards.Add(card);
