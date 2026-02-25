@@ -1,37 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UniRx;
+using UniRx.Triggers;
 using UnityEngine;
 using Zenject;
 
 public class CardSelector
 {
-    private CompositeDisposable _disposable = new CompositeDisposable();
-
     [Inject] private Camera _camera;
 
-    public CardSelector(List<Card> cardsToChoose, DiContainer container)
+    private CompositeDisposable _disposable = new CompositeDisposable();
+
+    public CardSelector(List<CardVisual> cardsToChoose, DiContainer container)
     {
         container.Inject(this);
-        RaycastHit hit;
-        Observable.EveryUpdate().Subscribe(_ =>
+        foreach (var card in cardsToChoose)
         {
-            Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hit, 100))
+            Debug.Log("START FOREACH");
+            card.CardImage.OnPointerClickAsObservable().Subscribe(_ =>
             {
-                if (hit.collider.TryGetComponent<CardVisual>(out CardVisual CardVisual))
-                {
-                    if (cardsToChoose.Contains(CardVisual.Card))
-                    {
-                        Debug.Log("Suck");
-                    }
-                }
-            }
-        }).AddTo(_disposable);
+                Debug.Log("ddddYAICA");
+            }).AddTo(_disposable);
+        }
     }
 
     ~CardSelector()
     {
-        _disposable?.Clear();
+        _disposable.Clear();
     }
 }

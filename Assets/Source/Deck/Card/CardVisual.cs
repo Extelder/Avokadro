@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CardVisual : MonoBehaviour
+public abstract class CardVisual : MonoBehaviour
 {
     public Card Card { get; private set; }
-    public Image CardImage { get; private set; }
+    [field: SerializeField] public Image CardImage { get; private set; }
 
-    public void Init(Card card)
+    public virtual void Init(Card card)
     {
         CardImage.sprite = card.CardData.Icon;
     }

@@ -10,10 +10,14 @@ public class GameSceneInstaller : MonoInstaller
     [SerializeField] private HandConfig _handConfig;
     [SerializeField] private GameObject _deckPrefab;
     [SerializeField] private GameObject _handPrefab;
+    
+    [SerializeField] private CardVisual _cardVisualPrefab;
     [SerializeField] private Transform _spawnPoint;
+    [SerializeField] private Transform _spawnParent;
 
     public override void InstallBindings()
     {
+        Container.Bind<CardVisual>().FromInstance(_cardVisualPrefab);
         DeckView deckView = Container.InstantiatePrefabForComponent<DeckView>(
             _deckPrefab,
             _spawnPoint.position,
@@ -23,9 +27,7 @@ public class GameSceneInstaller : MonoInstaller
         
         HandView handView = Container.InstantiatePrefabForComponent<HandView>(
             _handPrefab,
-            _spawnPoint.position,
-            Quaternion.identity,
-            null);
+            _spawnParent);
         Container.Bind<IHandContainable>().FromInstance(handView);
 
         Container.Bind<Camera>().FromInstance(_camera);

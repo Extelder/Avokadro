@@ -5,34 +5,42 @@ using Zenject;
 
 public class HandHandler : IInitializable
 {
+    private List<CardVisual> _spawnedCardVisuals = new List<CardVisual>();
+    
+    private CardVisual _cardVisual;
     private HandConfig _config;
     private Deck _deck;
     private Hand _hand;
     private IHandContainable _handContainable;
 
-    public HandHandler(Hand hand, IHandContainable handContainable, HandConfig config, Deck deck)
+    public HandHandler(Hand hand, IHandContainable handContainable, HandConfig config, Deck deck, CardVisual cardVisual)
     {
         Debug.Log("faw");
+        _cardVisual = cardVisual;
         _handContainable = handContainable;
         _hand = hand;
         _config = config;
         _deck = deck;
-        FillHand();
     }
 
     public void FillHand()
     {
         Debug.Log("FILL HAND");
         int cardsToSpawnCount = _config.CardsCapacity - _hand.Cards.Count;
-        for (int i = 0; i < cardsToSpawnCount - 1; i++)
+        for (int i = 0; i < cardsToSpawnCount; i++)
         {
             SpawnCard();
         }
+        _hand.SpawnSelector(_spawnedCardVisuals);
     }
 
     private void SpawnCard()
     {
-        _hand.Cards.Add(_deck.Take());
+        Card card = _deck.Take();
+        CardVisual cardVisual = MonoBehaviour.Instantiate(_cardVisual, _handContainable.DefaultSpawnParent);
+        cardVisual.Init(card);
+        _spawnedCardVisuals.Add(cardVisual);
+        _hand.Cards.Add(card);
         Debug.Log("HAND ADDED");
     }
 
