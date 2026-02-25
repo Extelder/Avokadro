@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Hand
 {
-    private CardSelector _cardSelector;
+    public CardSelector CardSelector { get; private set; }
     public List<Card> Cards { get; private set; } = new List<Card>();
     private DiContainer _container;
 
@@ -22,23 +22,23 @@ public class Hand
 
     public void SpawnSelector(List<CardVisual> cardVisuals)
     {
-        _cardSelector = new CardSelector(cardVisuals, _container, ref _selectedCards);
+        CardSelector = new CardSelector(cardVisuals, _container, ref _selectedCards);
         for (int i = 0; i < cardVisuals.Count; i++)
         {
             Debug.Log(cardVisuals[i].Card);
         }
 
-        _cardSelector.SelectedCardsChanged += OnSelectedCardsChanged;
+        CardSelector.SelectedCardsChanged += OnSelectedCardsChanged;
     }
 
     ~Hand()
     {
-        _cardSelector.SelectedCardsChanged -= OnSelectedCardsChanged;
+        CardSelector.SelectedCardsChanged -= OnSelectedCardsChanged;
     }
 
     private void OnSelectedCardsChanged(List<CardVisual> cards)
     {
-        Debug.Log(cards.GetBestCombination(_combinationContainer.CombinationsConfig).Name);
+//        Debug.Log(cards.GetBestCombination(_combinationContainer.CombinationsConfig).Name);
         //Combination combination = cards.GetBestCombination()
     }
 
