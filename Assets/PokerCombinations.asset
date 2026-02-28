@@ -14,43 +14,53 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Combinations>k__BackingField:
   - <Name>k__BackingField: High Card
+    <Multiplier>k__BackingField: 1
     <Priority>k__BackingField: 1
     _combinationType: []
   - <Name>k__BackingField: Pair
+    <Multiplier>k__BackingField: 2
     <Priority>k__BackingField: 2
     _combinationType:
     - rid: 1925277325199671321
   - <Name>k__BackingField: Two Pair
+    <Multiplier>k__BackingField: 3
     <Priority>k__BackingField: 3
     _combinationType:
     - rid: 1925277325199671322
     - rid: 1925277325199671323
   - <Name>k__BackingField: Three of a Kind
+    <Multiplier>k__BackingField: 4
     <Priority>k__BackingField: 4
     _combinationType:
     - rid: 1925277325199671324
   - <Name>k__BackingField: Straight
+    <Multiplier>k__BackingField: 5
     <Priority>k__BackingField: 5
     _combinationType:
     - rid: 1925277325199671325
   - <Name>k__BackingField: Flush
+    <Multiplier>k__BackingField: 6
     <Priority>k__BackingField: 6
     _combinationType:
     - rid: 1925277325199671326
   - <Name>k__BackingField: Full House
+    <Multiplier>k__BackingField: 7
     <Priority>k__BackingField: 7
     _combinationType:
     - rid: 1925277325199671327
     - rid: 1925277325199671328
   - <Name>k__BackingField: Four of a Kind
+    <Multiplier>k__BackingField: 8
     <Priority>k__BackingField: 8
     _combinationType:
     - rid: 1925277325199671329
   - <Name>k__BackingField: Straight Flush
+    <Multiplier>k__BackingField: 9
     <Priority>k__BackingField: 9
     _combinationType:
     - rid: 1925277325199671330
   - <Name>k__BackingField: Royal Flush
+    <Multiplier>k__BackingField: 10
     <Priority>k__BackingField: 10
     _combinationType:
     - rid: 1925277325199671331

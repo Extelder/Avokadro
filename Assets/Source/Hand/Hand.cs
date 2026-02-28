@@ -43,8 +43,8 @@ public class Hand
     private void OnSelectedCardsChanged(List<CardVisual> cards)
     {
         _currentSelectedCards = cards.ToArray();
-//        Debug.Log(cards.GetBestCombination(_combinationContainer.CombinationsConfig).Name);
-        //Combination combination = cards.GetBestCombination()
+        /*Debug.Log(cards.GetBestCombination(_combinationContainer.CombinationsConfig).Name);
+        Combination combination = cards.GetBestCombination()*/
     }
 
     public void Play()

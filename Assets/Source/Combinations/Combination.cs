@@ -9,6 +9,7 @@ using UnityEngine;
 public class Combination
 {
     [field: SerializeField] public string Name { get; set; }
+    [field: SerializeField] public int Multiplier { get; set; }
     [field: SerializeField] public int Priority { get; private set; }
 
     [SerializeReference] [SerializeReferenceButton] [SerializeField]
