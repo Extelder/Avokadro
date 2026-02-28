@@ -37,10 +37,11 @@ public class GameSceneInstaller : MonoInstaller
             null);
         Container.Bind<IDeckContainable>().FromInstance(deckView);
 
+
         HandView handView = Container.InstantiatePrefabForComponent<HandView>(
             _handPrefab,
             _handSpawnParent);
-        Container.Bind<IHandContainable>().FromInstance(handView);
+        Container.BindInterfacesAndSelfTo<HandView>().FromInstance(handView);
 
         TarotCardView tarotCardView = Container.InstantiatePrefabForComponent<TarotCardView>(
             _tarotViewPrefab,
@@ -48,7 +49,7 @@ public class GameSceneInstaller : MonoInstaller
             Quaternion.identity,
             null);
         Container.Bind<ITarotCardViewable>().FromInstance(tarotCardView);
-        
+
         ScoreView scoreView = Container.InstantiatePrefabForComponent<ScoreView>(
             _scoreViewPrefab,
             _scoreSpawnParent);
