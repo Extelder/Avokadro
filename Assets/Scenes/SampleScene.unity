@@ -525,6 +525,12 @@ GameObject:
   - component: {fileID: 531755138}
   - component: {fileID: 531755137}
   - component: {fileID: 531755139}
+  - component: {fileID: 531755140}
+  - component: {fileID: 531755141}
+  - component: {fileID: 531755142}
+  - component: {fileID: 531755143}
+  - component: {fileID: 531755144}
+  - component: {fileID: 531755145}
   m_Layer: 0
   m_Name: CONTEXT
   m_TagString: Untagged
@@ -546,7 +552,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scriptableObjectInstallers: []
   _monoInstallers:
+  - {fileID: 531755141}
+  - {fileID: 531755145}
+  - {fileID: 531755143}
+  - {fileID: 531755142}
   - {fileID: 531755139}
+  - {fileID: 531755140}
+  - {fileID: 531755144}
   _installerPrefabs: []
   _autoRun: 1
   OnPreInstall:
@@ -592,18 +604,91 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _camera: {fileID: 519420031}
-  _deckConfig: {fileID: 11400000, guid: 62ccedc6f916c3a49abb988376453e51, type: 2}
-  _handConfig: {fileID: 11400000, guid: 68d3e1a0a7544c940b5bfa3c2cdb6186, type: 2}
+--- !u!114 &531755140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 531755136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68e2ab7132cd60e4ca39e8f9d47cd327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   _scoreConfig: {fileID: 11400000, guid: 37b6a00eb30d95a4d8d10db76c335581, type: 2}
-  _combinationsConfig: {fileID: 11400000, guid: f92c7599402b3154d9f8d040e84980c0, type: 2}
-  _deckPrefab: {fileID: 455110315845702003, guid: 765b5e30e0ce8b946b6641bd6f55eae0, type: 3}
-  _handPrefab: {fileID: 3798110696912071307, guid: 8833e9799ae063146945e6644dea0660, type: 3}
-  _tarotViewPrefab: {fileID: 3575558712329121226, guid: a91bbe25adad33f4b91bfa94d24babac, type: 3}
   _scoreViewPrefab: {fileID: 2063727481725722959, guid: 498552a5b153bca4cae4f7bb765a1523, type: 3}
-  _cardVisualPrefab: {fileID: 6015674735118644273, guid: f53e7e950468abd4286b322e81d88fae, type: 3}
-  _spawnPoint: {fileID: 1079256819}
-  _handSpawnParent: {fileID: 469302120}
   _scoreSpawnParent: {fileID: 1050347384}
+--- !u!114 &531755141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 531755136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56d55bc4a78053449882b4a44dec7ebb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _deckConfig: {fileID: 11400000, guid: 62ccedc6f916c3a49abb988376453e51, type: 2}
+  _deckPrefab: {fileID: 455110315845702003, guid: 765b5e30e0ce8b946b6641bd6f55eae0, type: 3}
+  _spawnPoint: {fileID: 1079256819}
+--- !u!114 &531755142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 531755136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4d38da768b82e343a83fda25639ec2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _handConfig: {fileID: 11400000, guid: 68d3e1a0a7544c940b5bfa3c2cdb6186, type: 2}
+  _handPrefab: {fileID: 3798110696912071307, guid: 8833e9799ae063146945e6644dea0660, type: 3}
+  _handSpawnParent: {fileID: 469302120}
+--- !u!114 &531755143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 531755136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9208da3c6a1ac8d4085b8b2471b06489, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _combinationsConfig: {fileID: 11400000, guid: f92c7599402b3154d9f8d040e84980c0, type: 2}
+--- !u!114 &531755144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 531755136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91ce31e877ee2b04280d988933cf7147, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _tarotViewPrefab: {fileID: 3575558712329121226, guid: a91bbe25adad33f4b91bfa94d24babac, type: 3}
+  _spawnPoint: {fileID: 1079256819}
+--- !u!114 &531755145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 531755136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da99a2737b082c54ea9873b031b6883d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cardVisualPrefab: {fileID: 6015674735118644273, guid: f53e7e950468abd4286b322e81d88fae, type: 3}
 --- !u!1 &572288927
 GameObject:
   m_ObjectHideFlags: 0
