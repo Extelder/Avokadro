@@ -17,6 +17,7 @@ public class HandInstaller : MonoInstaller
             _handSpawnParent);
         Container.BindInterfacesAndSelfTo<HandView>().FromInstance(handView);
         Container.BindInterfacesAndSelfTo<Hand>().FromNew().AsSingle();
+        Container.BindInterfacesAndSelfTo<PlayableHand>().FromNew().AsSingle();
         Container.BindInterfacesAndSelfTo<HandHandler>().FromNew().AsSingle();
     }
 }
