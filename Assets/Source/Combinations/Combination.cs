@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UniRx;
 using UnityEngine;
 
 
@@ -10,6 +11,8 @@ public class Combination
 {
     [field: SerializeField] public string Name { get; set; }
     [field: SerializeField] public int Multiplier { get; set; }
+
+    public ReactiveProperty<int> CurrentMultiplier {get; set;} = new ReactiveProperty<int>(); 
     [field: SerializeField] public int Priority { get; private set; }
 
     [SerializeReference] [SerializeReferenceButton] [SerializeField]

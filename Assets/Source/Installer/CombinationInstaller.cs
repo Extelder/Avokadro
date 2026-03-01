@@ -10,5 +10,7 @@ public class CombinationInstaller : MonoInstaller
     {
         Container.Bind<CombinationsConfig>().FromInstance(_combinationsConfig);
         Container.Bind<CombinationContainer>().FromNew().AsSingle();
+        Container.Bind<CombinationUpgrader>().FromNew().AsSingle();
+        Container.BindInterfacesAndSelfTo<CombinationUpgraderHandler>().FromNew().AsSingle();
     }
 }
