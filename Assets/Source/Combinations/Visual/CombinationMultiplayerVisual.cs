@@ -39,7 +39,7 @@ public class CombinationMultiplayerVisual : MonoBehaviour
         int combinationMultiplier = 0;
         if (cardVisuals.Count < 0)
             return;
-        Combination combination = cardVisuals.GetBestCombination(_combinationContainer.CombinationsConfig);
+        Combination combination = cardVisuals.GetBestCombination(_combinationContainer.Combinations);
         if (combination == null)
         {
             _text.text = "0";
