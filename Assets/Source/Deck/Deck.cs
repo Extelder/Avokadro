@@ -9,6 +9,7 @@ using Random = UnityEngine.Random;
 public class Deck : IDisposable, IInitializable
 {
     public List<Card> Cards = new List<Card>();
+    public List<Card> GlobalCards = new List<Card>();
 
     private DeckHandler _deckHandler;
     private DeckConfig _config;
@@ -21,41 +22,58 @@ public class Deck : IDisposable, IInitializable
         _deckHandler = handler;
         _config = config;
         _deckContainable = deckContainable;
+        FillGlobalDeck();
         FillDeck();
     }
 
-    public void FillDeck()
+    public void FillGlobalDeck()
     {
         
         for (int i = 0; i < _config.DeckDefaultCapacity; i++)
         {
-            Add(new Card(_deckContainable.CardDatas[i]));
+            Add(new Card(_deckContainable.CardDatas[i]), true);
         }
+        Debug.Log("DECK ADDED" + GlobalCards.Count);
+    }
+    
+    public void FillDeck()
+    {
+        for (int i = 0; i < GlobalCards.Count; i++)
+        {
+            Debug.Log(GlobalCards[i]);
+            Add(GlobalCards[i]);
+            Debug.Log("DECK ADD");
+        }
+        Debug.Log("DECK ADDED");
     }
 
-    public void Add(Card card)
+    public void Add(Card card, bool isGlobal = false)
     {
-        _deckHandler.Add(ref Cards, card);
+        List<Card> cards = isGlobal ? ref GlobalCards : ref Cards;
+        _deckHandler.Add(ref cards, card);
+    }
+    
+    public void PutAway(Card card, bool isGlobal = false)
+    {
+        List<Card> cards = isGlobal ?  ref GlobalCards : ref Cards;
+        _deckHandler.PutAway(ref cards, card);
     }
     
     
 
-    public void PutAway(Card card)
+    public Card Take(Card card, bool isGlobal = false)
     {
-        _deckHandler.PutAway(ref Cards, card);
-    }
-
-    public Card Take(Card card)
-    {
-        if (_deckHandler.TryTake(Cards, card, out card))
+        List<Card> cards = isGlobal ? Cards : GlobalCards;
+        if (_deckHandler.TryTake(cards, card, out card))
             return card;
         return null;
     }
 
-    public Card Take()
+    public Card Take(bool isGlobal = false)
     {
-        Card card = Cards[Random.Range(0, Cards.Count - 1)];
-        if (_deckHandler.TryTake(Cards, card, out Card outcard))
+        List<Card> cards = isGlobal ? Cards : GlobalCards;
+        Card card = cards[Random.Range(0, cards.Count - 1)];
+        if (_deckHandler.TryTake(cards, card, out Card outcard))
             return outcard;
         return null;
     }

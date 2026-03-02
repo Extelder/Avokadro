@@ -7,7 +7,7 @@ using UniRx.Triggers;
 using UnityEngine;
 using Zenject;
 
-public class CardSelector
+public class CardSelector : IDisposable
 {
     private CompositeDisposable _disposable = new CompositeDisposable();
 
@@ -15,16 +15,14 @@ public class CardSelector
 
     public event Action<List<CardVisual>> SelectedCardsChanged;
 
-    public CardSelector(List<CardVisual> cardsToChoose, DiContainer container, ref List<CardVisual> selectedCards)
+    public CardSelector(List<CardVisual> cardsToChoose, DiContainer container)
     {
         container.Inject(this);
         foreach (var card in cardsToChoose)
         {
-            Debug.Log("START FOREACH");
             card.CardImage.OnPointerClickAsObservable().Subscribe(_ =>
             {
                 OnCardClicked(card);
-                Debug.Log("ddddYAICA");
             }).AddTo(_disposable);
         }
     }
@@ -44,7 +42,7 @@ public class CardSelector
         SelectedCardsChanged?.Invoke(_selectedCardVisuals);
     }
 
-    ~CardSelector()
+    public void Dispose()
     {
         _disposable.Clear();
     }
