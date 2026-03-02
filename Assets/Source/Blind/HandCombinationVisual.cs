@@ -32,6 +32,6 @@ public class HandCombinationVisual : MonoBehaviour
     private void OnSelectedCardsChanged(List<CardVisual> cards)
     {
         if (cards.Count > 0)
-            _combinationText.text = cards.GetBestCombination(_combinationContainer.CombinationsConfig).Name;
+            _combinationText.text = cards.GetBestCombination(_combinationContainer.Combinations).Name;
     }
 }

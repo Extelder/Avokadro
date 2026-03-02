@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using Zenject;
 using Random = UnityEngine.Random;
@@ -13,6 +14,8 @@ public class Deck : IDisposable, IInitializable
     private DeckConfig _config;
     private IDeckContainable _deckContainable;
 
+    private Sequence _sequence;
+    
     public Deck(DeckHandler handler, DeckConfig config, IDeckContainable deckContainable)
     {
         _deckHandler = handler;
@@ -23,6 +26,7 @@ public class Deck : IDisposable, IInitializable
 
     public void FillDeck()
     {
+        
         for (int i = 0; i < _config.DeckDefaultCapacity; i++)
         {
             Add(new Card(_deckContainable.CardDatas[i]));
@@ -33,6 +37,8 @@ public class Deck : IDisposable, IInitializable
     {
         _deckHandler.Add(ref Cards, card);
     }
+    
+    
 
     public void PutAway(Card card)
     {

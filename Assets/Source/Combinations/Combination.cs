@@ -12,7 +12,7 @@ public class Combination
     [field: SerializeField] public string Name { get; set; }
     [field: SerializeField] public int Multiplier { get; set; }
 
-    public ReactiveProperty<int> CurrentMultiplier {get; set;} = new ReactiveProperty<int>(); 
+    public ReactiveProperty<int> CurrentMultiplier { get; set; } = new ReactiveProperty<int>();
     [field: SerializeField] public int Priority { get; private set; }
 
     [SerializeReference] [SerializeReferenceButton] [SerializeField]
@@ -222,18 +222,15 @@ public static class CardCombinationExtensions
 {
     public static Combination GetBestCombination(
         this Card[] cards,
-        CombinationsConfig config)
+        Combination[] combinations)
     {
         if (cards == null || cards.Length == 0)
-            return null;
-
-        if (config == null || config.Combinations == null)
             return null;
 
         Combination best = null;
         int bestPriority = int.MinValue;
 
-        foreach (var combo in config.Combinations)
+        foreach (var combo in combinations)
         {
             if (combo == null)
                 continue;
@@ -253,17 +250,17 @@ public static class CardCombinationExtensions
 
     public static Combination GetBestCombination(
         this List<Card> cards,
-        CombinationsConfig config)
+        Combination[] combinations)
     {
         if (cards == null)
             return null;
 
-        return GetBestCombination(cards.ToArray(), config);
+        return GetBestCombination(cards.ToArray(), combinations);
     }
 
     public static Combination GetBestCombination(
         this List<CardVisual> cards,
-        CombinationsConfig config)
+        Combination[] combinations)
     {
         if (cards == null)
             return null;
@@ -275,6 +272,6 @@ public static class CardCombinationExtensions
             Debug.Log(defcards[i]);
         }
 
-        return GetBestCombination(defcards, config);
+        return GetBestCombination(defcards, combinations);
     }
 }

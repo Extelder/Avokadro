@@ -17,7 +17,7 @@ public class CombinationUpgrader : IDisposable
         {
             if (Input.GetKeyDown(KeyCode.F))
             {
-                CombinationUpgrade?.Invoke(4);
+                CombinationUpgrade?.Invoke(0);
             }
         }).AddTo(_disposable);
     }

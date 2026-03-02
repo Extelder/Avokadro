@@ -25,10 +25,10 @@ public class Score : IInitializable
 
     private void OnHandPlayed(CardVisual[] cardVisuals)
     {
-        Combination combination = cardVisuals.ToList().GetBestCombination(_combinationContainer.CombinationsConfig);
+        Combination combination = cardVisuals.ToList().GetBestCombination(_combinationContainer.Combinations);
         for (int i = 0; i < cardVisuals.Length; i++)
         {
-            Add(cardVisuals[i].Card.Rank.GetCardValue() * combination.Multiplier);
+            Add(cardVisuals[i].Card.Rank.GetCardValue() * combination.CurrentMultiplier.Value);
         }
     }
 

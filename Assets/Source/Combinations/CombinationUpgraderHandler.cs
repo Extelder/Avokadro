@@ -19,7 +19,7 @@ public class CombinationUpgraderHandler : IInitializable, IDisposable
 
     private void OnCombinationUpgrade(int combinationPriority)
     {
-        _combinationContainer.CombinationsConfig.Combinations[combinationPriority].CurrentMultiplier.Value += 1;
+        _combinationContainer.Combinations[combinationPriority].CurrentMultiplier.Value += 1;
     }
 
     public void Initialize()
