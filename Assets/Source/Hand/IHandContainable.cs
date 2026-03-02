@@ -5,4 +5,6 @@ using UnityEngine;
 public interface IHandContainable
 {
     public Transform DefaultSpawnParent { get; set; }
+
+    public void DestroyObject(GameObject objectToDestroy);
 }

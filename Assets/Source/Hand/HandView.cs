@@ -24,5 +24,10 @@ public class HandView : MonoBehaviour, IHandContainable
         _rectTransform.offsetMax = Vector2.zero;
     }
 
+    public void DestroyObject(GameObject objectToDestroy)
+    {
+        Destroy(objectToDestroy);
+    }
+
     [field: SerializeField] public Transform DefaultSpawnParent { get; set; }
 }

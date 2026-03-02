@@ -9,7 +9,6 @@ using Zenject;
 public class HandHandler : IInitializable, IDisposable
 {
     private List<CardVisual> _spawnedCardVisuals = new List<CardVisual>();
-
     private CardVisual _cardVisual;
     private HandView _handView;
     private HandConfig _config;
@@ -36,6 +35,35 @@ public class HandHandler : IInitializable, IDisposable
         _config = config;
         _deck = deck;
         _hand.PlayHand += OnPlayHand;
+        _hand.CardsPlayed += OnCardsPlayed;
+    }
+
+    private void OnCardsPlayed(CardVisual[] cardVisuals)
+    {
+        Sequence sequence = DOTween.Sequence();
+        for (int i = 0; i < cardVisuals.Length; i++)
+        {
+            CardVisual cardVisual = cardVisuals[i];
+            sequence.Append(cardVisual.transform.DOLocalMoveY(2000, 0.2f).OnComplete(() =>
+            {
+                Debug.Log("MVOE");
+                OnCardsMoved(cardVisual);
+            }));
+        }
+
+        sequence.Play().OnComplete(() =>
+        {
+            Debug.Log("FILL");
+            FillHand();
+        });
+    }
+
+    private void OnCardsMoved(CardVisual cardVisual)
+    {
+        _handContainable.DestroyObject(cardVisual.gameObject);
+        _deck.PutAway(cardVisual.Card);
+        _hand.Cards.Remove(cardVisual.Card);
+        _spawnedCardVisuals.Remove(cardVisual);
     }
 
     private void OnPlayHand(CardVisual[] cardVisuals)
@@ -58,6 +86,11 @@ public class HandHandler : IInitializable, IDisposable
         for (int i = 0; i < cardsToSpawnCount; i++)
         {
             SpawnCard();
+        }
+
+        for (int i = 0; i < _spawnedCardVisuals.Count; i++)
+        {
+            _spawnedCardVisuals[i].transform.DOLocalMoveY(0, 0.2f);
         }
 
         _hand.SpawnSelector(_spawnedCardVisuals);
@@ -83,6 +116,7 @@ public class HandHandler : IInitializable, IDisposable
     {
         _disposable?.Clear();
         _hand.PlayHand -= OnPlayHand;
+        _hand.CardsPlayed -= OnCardsPlayed;
         _deck?.Dispose();
     }
 }

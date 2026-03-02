@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UniRx;
 using UnityEngine;
 using Zenject;
 
@@ -9,6 +10,7 @@ public class ScorePrecounterVisual : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _text;
     private Hand _hand;
+    private CompositeDisposable _disposable = new CompositeDisposable();
 
     [Inject]
     public void Construct(Hand hand)
@@ -18,7 +20,17 @@ public class ScorePrecounterVisual : MonoBehaviour
 
     private void Start()
     {
-        _hand.CardSelector.SelectedCardsChanged += OnSelectedCardsChanged;
+        _hand.CardSelector.Subscribe(_ =>
+        {
+            if (_ == null)
+            {
+                return;
+            }
+
+            _text.text = "0";
+            _hand.CardSelector.Value.SelectedCardsChanged -= OnSelectedCardsChanged;
+            _.SelectedCardsChanged += OnSelectedCardsChanged;  
+        }).AddTo(_disposable);
     }
 
     private void OnSelectedCardsChanged(List<CardVisual> cardVisuals)
@@ -33,6 +45,7 @@ public class ScorePrecounterVisual : MonoBehaviour
 
     private void OnDisable()
     {
-        _hand.CardSelector.SelectedCardsChanged -= OnSelectedCardsChanged;
+        _disposable.Clear();
+        _hand.CardSelector.Value.SelectedCardsChanged -= OnSelectedCardsChanged;
     }
 }

@@ -1,20 +1,23 @@
 using System;
 using Zenject;
 using System.Collections.Generic;
+using DG.Tweening;
+using UniRx;
 using UnityEngine;
 
 
 public class Hand
 {
-    public CardSelector CardSelector { get; private set; }
+    public ReactiveProperty<CardSelector> CardSelector { get; private set; } = new ReactiveProperty<CardSelector>();
     public List<Card> Cards { get; private set; } = new List<Card>();
     private DiContainer _container;
 
-    private List<CardVisual> _selectedCards = new List<CardVisual>();
 
     private CombinationContainer _combinationContainer;
+    private Tween _tween;
 
     public event Action<CardVisual[]> PlayHand;
+    public event Action<CardVisual[]> CardsPlayed;
 
     private CardVisual[] _currentSelectedCards;
     
@@ -26,25 +29,34 @@ public class Hand
 
     public void SpawnSelector(List<CardVisual> cardVisuals)
     {
-        CardSelector = new CardSelector(cardVisuals, _container, ref _selectedCards);
+        if (CardSelector.Value != null)
+            CardSelector.Value.Dispose();
+
+        CardSelector.Value = null;
+        CardSelector.Value = new CardSelector(cardVisuals, _container);
         for (int i = 0; i < cardVisuals.Count; i++)
         {
             Debug.Log(cardVisuals[i].Card);
         }
 
-        CardSelector.SelectedCardsChanged += OnSelectedCardsChanged;
+        CardSelector.Value.SelectedCardsChanged += OnSelectedCardsChanged;
+    }
+
+    public void NextHand(CardVisual[] cardVisuals)
+    {
+        CardsPlayed?.Invoke(cardVisuals);
     }
 
     ~Hand()
     {
-        CardSelector.SelectedCardsChanged -= OnSelectedCardsChanged;
+        CardSelector.Value.SelectedCardsChanged -= OnSelectedCardsChanged;
+        _tween.Kill();
     }
 
     private void OnSelectedCardsChanged(List<CardVisual> cards)
     {
+        Debug.Log("SELECTED CARDSA CHANGED");
         _currentSelectedCards = cards.ToArray();
-        /*Debug.Log(cards.GetBestCombination(_combinationContainer.CombinationsConfig).Name);
-        Combination combination = cards.GetBestCombination()*/
     }
 
     public void Play()

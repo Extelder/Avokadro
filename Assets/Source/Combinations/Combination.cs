@@ -272,7 +272,6 @@ public static class CardCombinationExtensions
         for (int i = 0; i < defcards.Length; i++)
         {
             defcards[i] = cards[i].Card;
-            Debug.Log(defcards[i]);
         }
 
         return GetBestCombination(defcards, config);
