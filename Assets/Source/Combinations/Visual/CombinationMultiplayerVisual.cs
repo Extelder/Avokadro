@@ -46,7 +46,7 @@ public class CombinationMultiplayerVisual : MonoBehaviour
             return;
         }
 
-        combinationMultiplier = combination.Multiplier;
+        combinationMultiplier = combination.CurrentMultiplier.Value;
         _text.text = combinationMultiplier.ToString();
     }
 

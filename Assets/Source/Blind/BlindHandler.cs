@@ -1,0 +1,24 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class BlindHandler : IDisposable
+{
+    private Blind _blind;
+    
+    public BlindHandler(Blind blind)
+    {
+        _blind = blind;
+        _blind.BlindSetUped += OnBlindSetUped;
+    }
+
+    private void OnBlindSetUped()
+    {
+    }
+
+    public void Dispose()
+    {
+        _blind.BlindSetUped -= OnBlindSetUped;
+    }
+}
