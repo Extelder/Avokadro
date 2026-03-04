@@ -6,13 +6,13 @@ using UnityEngine;
 
 public class Blind : IDisposable
 {
-    public event Action BlindSetUped;
-
     private BlindSelector _blindSelector;
     private CompositeDisposable _disposable = new CompositeDisposable();
-
-    public Blind(BlindSpawner blindSpawner)
+    private Round _round;
+    
+    public Blind(BlindSpawner blindSpawner, Round round)
     {
+        _round = round;
         blindSpawner.Selector.Subscribe(_ =>
         {
             if (_ == null)
@@ -26,10 +26,9 @@ public class Blind : IDisposable
 
     private void OnBlindSelected(IBlindViewable blindViewable)
     {
-        BlindSetUped?.Invoke();
+        _round.PointsToWin = blindViewable.BlindConfig.GoalScore;
     }
-
-
+    
     public void Dispose()
     {
         _disposable.Clear();

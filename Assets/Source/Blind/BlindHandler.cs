@@ -10,7 +10,6 @@ public class BlindHandler : IDisposable
     public BlindHandler(Blind blind)
     {
         _blind = blind;
-        _blind.BlindSetUped += OnBlindSetUped;
     }
 
     private void OnBlindSetUped()
@@ -19,6 +18,5 @@ public class BlindHandler : IDisposable
 
     public void Dispose()
     {
-        _blind.BlindSetUped -= OnBlindSetUped;
     }
 }

@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public interface IBlindViewable
 {
+    public BlindConfig BlindConfig { get; set; }
     public Image Image { get; set; }
     public Button PlayButton { get; set; }
     public TextMeshProUGUI MinScore { get; set; }

@@ -7,7 +7,7 @@ public class Round
 {
     public int Hands { get; private set; }
     public int Discards { get; private set; }
-    public int PointsToWin { get; private set; } = 800;
+    public int PointsToWin { get; set; }
 
     public event Action<int> HandsValueChanged;
     public event Action<int> DiscradsValueChanged;

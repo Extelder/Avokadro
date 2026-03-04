@@ -33,7 +33,6 @@ public class Deck : IDisposable, IInitializable
         {
             Add(new Card(_deckContainable.CardDatas[i]), true);
         }
-        Debug.Log("DECK ADDED" + GlobalCards.Count);
     }
     
     public void FillDeck()
@@ -42,9 +41,7 @@ public class Deck : IDisposable, IInitializable
         {
             Debug.Log(GlobalCards[i]);
             Add(GlobalCards[i]);
-            Debug.Log("DECK ADD");
         }
-        Debug.Log("DECK ADDED");
     }
 
     public void Add(Card card, bool isGlobal = false)
