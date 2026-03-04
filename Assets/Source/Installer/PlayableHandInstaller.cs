@@ -9,6 +9,6 @@ public class PlayableHandInstaller : MonoInstaller
     public override void InstallBindings()
     {
         Container.Bind<PlayableHandConfig>().FromInstance(_playableHandConfig).AsSingle();
-        Container.BindInterfacesAndSelfTo<PlayableHand>().FromNew().AsSingle();
+        Container.BindInterfacesAndSelfTo<HandPlayer>().FromNew().AsSingle();
     }
 }

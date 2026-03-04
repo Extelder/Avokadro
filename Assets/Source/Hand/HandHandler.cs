@@ -8,7 +8,7 @@ using Zenject;
 
 public class HandHandler : IInitializable, IDisposable
 {
-    private List<CardVisual> _spawnedCardVisuals = new List<CardVisual>();
+    public List<CardVisual> SpawnedCardVisuals { get; private set; } = new List<CardVisual>();
     private CardVisual _cardVisual;
     private HandView _handView;
     private HandConfig _config;
@@ -27,6 +27,11 @@ public class HandHandler : IInitializable, IDisposable
             {
                 _hand.Play();
             }
+
+            if (Input.GetKeyDown(KeyCode.V))
+            {
+                _hand.Discard();
+            }
         }).AddTo(_disposable);
         _handView = handView;
         _cardVisual = cardVisual;
@@ -35,7 +40,16 @@ public class HandHandler : IInitializable, IDisposable
         _config = config;
         _deck = deck;
         _hand.PlayHand += OnPlayHand;
+        _hand.DiscardHand += OnDiscardHand;
         _hand.CardsPlayed += OnCardsPlayed;
+    }
+
+    private void OnDiscardHand(CardVisual[] cardVisuals)
+    {
+        for (int i = 0; i < cardVisuals.Length; i++)
+        {
+            _hand.Cards.Remove(cardVisuals[i].Card);
+        }
     }
 
     private void OnCardsPlayed(CardVisual[] cardVisuals)
@@ -63,7 +77,7 @@ public class HandHandler : IInitializable, IDisposable
         _handContainable.DestroyObject(cardVisual.gameObject);
         _deck.PutAway(cardVisual.Card);
         _hand.Cards.Remove(cardVisual.Card);
-        _spawnedCardVisuals.Remove(cardVisual);
+        SpawnedCardVisuals.Remove(cardVisual);
     }
 
     private void OnPlayHand(CardVisual[] cardVisuals)
@@ -74,9 +88,9 @@ public class HandHandler : IInitializable, IDisposable
             cardVisuals[i].transform.SetParent(_handView.PlayHandParent);
         }
 
-        for (int i = 0; i < _spawnedCardVisuals.Count; i++)
+        for (int i = 0; i < SpawnedCardVisuals.Count; i++)
         {
-            _spawnedCardVisuals[i].transform.DOLocalMoveY(0, 0.2f);
+            SpawnedCardVisuals[i].transform.DOLocalMoveY(0, 0.2f);
         }
     }
 
@@ -88,13 +102,14 @@ public class HandHandler : IInitializable, IDisposable
             SpawnCard();
         }
 
-        for (int i = 0; i < _spawnedCardVisuals.Count; i++)
+        for (int i = 0; i < SpawnedCardVisuals.Count; i++)
         {
-            _spawnedCardVisuals[i].transform.DOLocalMoveY(0, 0.2f);
+            SpawnedCardVisuals[i].transform.DOLocalMoveY(0, 0.2f);
         }
 
-        _hand.SpawnSelector(_spawnedCardVisuals);
+        _hand.SpawnSelector(SpawnedCardVisuals);
     }
+
 
     private void SpawnCard()
     {
@@ -103,7 +118,7 @@ public class HandHandler : IInitializable, IDisposable
         cardVisual.transform.DOLocalMoveY(0, 0.2f);
 
         cardVisual.Init(card);
-        _spawnedCardVisuals.Add(cardVisual);
+        SpawnedCardVisuals.Add(cardVisual);
         _hand.Cards.Add(card);
     }
 
@@ -114,6 +129,7 @@ public class HandHandler : IInitializable, IDisposable
 
     public void Dispose()
     {
+        _hand.DiscardHand -= OnDiscardHand;
         _disposable?.Clear();
         _hand.PlayHand -= OnPlayHand;
         _hand.CardsPlayed -= OnCardsPlayed;

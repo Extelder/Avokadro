@@ -18,5 +18,6 @@ public class HandInstaller : MonoInstaller
         Container.BindInterfacesAndSelfTo<HandView>().FromInstance(handView);
         Container.BindInterfacesAndSelfTo<Hand>().FromNew().AsSingle();
         Container.BindInterfacesAndSelfTo<HandHandler>().FromNew().AsSingle();
+        Container.BindInterfacesAndSelfTo<HandDiscarder>().FromNew().AsSingle();
     }
 }

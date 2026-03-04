@@ -16,13 +16,21 @@ public class Hand
     private CombinationContainer _combinationContainer;
     private Tween _tween;
 
+    private Round _round;
+
+    private PlayerProgression _playerProgression;
+
     public event Action<CardVisual[]> PlayHand;
+    public event Action<CardVisual[]> DiscardHand;
     public event Action<CardVisual[]> CardsPlayed;
 
     private CardVisual[] _currentSelectedCards;
-    
-    public Hand(DiContainer container, CombinationContainer combinationContainer)
+
+    public Hand(DiContainer container, CombinationContainer combinationContainer, Round round,
+        PlayerProgression playerProgression)
     {
+        _playerProgression = playerProgression;
+        _round = round;
         _container = container;
         _combinationContainer = combinationContainer;
     }
@@ -33,7 +41,7 @@ public class Hand
             CardSelector.Value.Dispose();
 
         CardSelector.Value = null;
-        CardSelector.Value = new CardSelector(cardVisuals, _container);
+        CardSelector.Value = new CardSelector(cardVisuals, _container, _playerProgression);
         for (int i = 0; i < cardVisuals.Count; i++)
         {
             Debug.Log(cardVisuals[i].Card);
@@ -61,6 +69,13 @@ public class Hand
 
     public void Play()
     {
-        PlayHand?.Invoke(_currentSelectedCards);
+        if (_round.TrySpentHand())
+            PlayHand?.Invoke(_currentSelectedCards);
+    }
+
+    public void Discard()
+    {
+        if (_round.TrySpentDiscard())
+            DiscardHand?.Invoke(_currentSelectedCards);
     }
 }

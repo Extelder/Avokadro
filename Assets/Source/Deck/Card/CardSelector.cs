@@ -15,15 +15,18 @@ public class CardSelector : IDisposable
 
     public event Action<List<CardVisual>> SelectedCardsChanged;
 
-    public CardSelector(List<CardVisual> cardsToChoose, DiContainer container)
+    private int _cardsToPlayCapacity;
+    private int _currentSelectedCards;
+
+    public CardSelector(List<CardVisual> cardsToChoose, DiContainer container, PlayerProgression playerProgression)
     {
+        _currentSelectedCards = 0;
+        _cardsToPlayCapacity = playerProgression.CardsToPlayCapacity.Value;
+
         container.Inject(this);
         foreach (var card in cardsToChoose)
         {
-            card.CardImage.OnPointerClickAsObservable().Subscribe(_ =>
-            {
-                OnCardClicked(card);
-            }).AddTo(_disposable);
+            card.CardImage.OnPointerClickAsObservable().Subscribe(_ => { OnCardClicked(card); }).AddTo(_disposable);
         }
     }
 
@@ -31,12 +34,16 @@ public class CardSelector : IDisposable
     {
         if (_selectedCardVisuals.Contains(cardVisual))
         {
+            _currentSelectedCards--;
             cardVisual.transform.DOLocalMoveY(0, 0.2f);
             _selectedCardVisuals.Remove(cardVisual);
             SelectedCardsChanged?.Invoke(_selectedCardVisuals);
             return;
         }
 
+        if (_currentSelectedCards >= _cardsToPlayCapacity)
+            return;
+        _currentSelectedCards++;
         cardVisual.transform.DOLocalMoveY(100f, 0.2f);
         _selectedCardVisuals.Add(cardVisual);
         SelectedCardsChanged?.Invoke(_selectedCardVisuals);

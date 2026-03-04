@@ -4,13 +4,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-public class PlayableHand : IDisposable, IInitializable
+public class HandPlayer : IDisposable, IInitializable
 {
     private Hand _hand;
     private SceneContext _context;
     private PlayableHandConfig _config;
     
-    public PlayableHand(Hand hand, SceneContext context, PlayableHandConfig config)
+    public HandPlayer(Hand hand, SceneContext context, PlayableHandConfig config)
     {
         _context = context;
         _hand = hand;
