@@ -19,7 +19,7 @@ MonoBehaviour:
       rid: -2
   <Sprite>k__BackingField: {fileID: 21300000, guid: 22daf5db5fb5b59459e67ae3ea764516, type: 3}
   <Name>k__BackingField: Small
-  <GoalScore>k__BackingField: 100
+  <GoalScore>k__BackingField: 1000
   references:
     version: 2
     RefIds:

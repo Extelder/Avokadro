@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b2fc3be53d5afb4299a905ab82b5bc4, type: 3}
+  m_Name: ShopCFG
+  m_EditorClassIdentifier: 
+  <Buyables>k__BackingField:
+  - {fileID: 3409787591984699650, guid: 21b7ca5b98bce0540ab3b83deaad46c4, type: 3}
+  <NumberOfBuyables>k__BackingField: 5

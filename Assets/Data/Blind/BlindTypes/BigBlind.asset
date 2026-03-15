@@ -17,9 +17,9 @@ MonoBehaviour:
     <Description>k__BackingField: 
     <BlindConditions>k__BackingField:
       rid: -2
-  <Image>k__BackingField: {fileID: 0}
+  <Sprite>k__BackingField: {fileID: 0}
   <Name>k__BackingField: 
-  <GoalScore>k__BackingField: 0
+  <GoalScore>k__BackingField: 1000
   references:
     version: 2
     RefIds:
