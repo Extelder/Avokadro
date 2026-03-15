@@ -8,12 +8,14 @@ public class RoundWinLose : IDisposable
     private Hand _hand;
     private Round _round;
     private Score _score;
+    private Wallet _wallet;
 
     public static event Action Winned;
     public static event Action Losed;
 
-    public RoundWinLose(Hand hand, Round round, Score score)
+    public RoundWinLose(Hand hand, Round round, Score score, Wallet wallet)
     {
+        _wallet = wallet;
         _hand = hand;
         _score = score;
         _round = round;
@@ -36,6 +38,7 @@ public class RoundWinLose : IDisposable
 
     public void Win()
     {
+        _wallet.Add(_round.PointsToWin);
         Debug.Log("Win");
         Winned?.Invoke();
     }

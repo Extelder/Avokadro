@@ -16,8 +16,11 @@ public class ShopHandler : IInitializable, IDisposable
 
     private IShopSpawnInput _shopSpawnInput;
 
-    public ShopHandler(Shop shop, ShopConfig config, IShopSpawnInput shopSpawnInput)
+    private DiContainer _container;
+    
+    public ShopHandler(Shop shop, ShopConfig config, IShopSpawnInput shopSpawnInput, DiContainer container)
     {
+        _container = container;
         _shopSpawnInput = shopSpawnInput;
         _shop = shop;
         _config = config;
@@ -50,6 +53,7 @@ public class ShopHandler : IInitializable, IDisposable
         {
             _currentBuyables.Add(MonoBehaviour.Instantiate(_config.Buyables[Random.Range(0, _config.Buyables.Count)],
                 _shopSpawnInput.SpawnPoint));
+            _container.Inject(_currentBuyables[i]);
         }
     }
 
