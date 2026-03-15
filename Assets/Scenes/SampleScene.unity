@@ -3498,14 +3498,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7838c9121b56af4ca9315e5e53e6201, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stageObjects:
-  - {fileID: 816938432}
-  - {fileID: 1417853021}
-  - {fileID: 1388075132}
   _previoseStage: {fileID: 1417853021}
-  _stage:
-    <MainPanel>k__BackingField: 0
-    <BlindPanel>k__BackingField: 0
+  _stages:
+  - <StageObject>k__BackingField: {fileID: 1417853021}
+  - <StageObject>k__BackingField: {fileID: 816938432}
+  - <StageObject>k__BackingField: {fileID: 1388075132}
 --- !u!1 &1968421028
 GameObject:
   m_ObjectHideFlags: 0

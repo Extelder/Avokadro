@@ -38,14 +38,15 @@ public class RoundWinLose : IDisposable
 
     public void Win()
     {
+
         _wallet.Add(_round.PointsToWin);
-        Debug.Log("Win");
+
+
         Winned?.Invoke();
     }
 
     public void Lose()
     {
-        Debug.Log("Lose");
         Losed?.Invoke();
     }
 
