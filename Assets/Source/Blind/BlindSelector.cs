@@ -7,6 +7,7 @@ using UnityEngine;
 
 public class BlindSelector
 {
+    public event Action ButtonCliked;
     public event Action<IBlindViewable> BlindSelected; 
     private CompositeDisposable _disposable = new CompositeDisposable();
     
@@ -14,16 +15,17 @@ public class BlindSelector
     {
         foreach (var blindView in blindViews)
         {
-            blindView.PlayButton.OnPointerClickAsObservable().Subscribe(_ =>
+            IBlindViewable blindViewable = blindView;
+            blindViewable.PlayButton.OnPointerClickAsObservable().Subscribe(_ =>
             {
-                OnBlindSelected(blindView);
+                OnBlindSelected(blindViewable);
             }).AddTo(_disposable);
         }
     }
 
     private void OnBlindSelected(IBlindViewable blindViewable)
     {
-        Debug.Log("SELECTEEED");
+        ButtonCliked?.Invoke();
         BlindSelected?.Invoke(blindViewable);
     }
 }

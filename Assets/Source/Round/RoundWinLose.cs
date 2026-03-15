@@ -36,13 +36,11 @@ public class RoundWinLose : IDisposable
 
     public void Win()
     {
-        Debug.Log("Win");
         Winned?.Invoke();
     }
 
     public void Lose()
     {
-        Debug.Log("Lose");
         Losed?.Invoke();
     }
 

@@ -14,6 +14,7 @@ public class BlindView : MonoBehaviour, IBlindViewable
     
     public void Spawned(BlindConfig blindConfig)
     {
+        BlindConfig = blindConfig;
         Image.sprite = blindConfig.Sprite;
         MinScore.text = blindConfig.GoalScore.ToString();
         BlindName.text = blindConfig.Name;

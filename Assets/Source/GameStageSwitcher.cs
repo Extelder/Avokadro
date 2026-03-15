@@ -8,22 +8,25 @@ using Zenject;
 [Serializable]
 public struct Stage
 {
-   [field: SerializeField] public int MainPanel { get; set; }
-   [field: SerializeField] public int BlindPanel { get; set; }
+    [field: SerializeField] public GameObject StageObject { get; set; }
 }
 
 public class GameStageSwitcher : MonoBehaviour
 {
-    [SerializeField] private GameObject[] _stageObjects;
     [SerializeField] private GameObject _previoseStage;
-    [SerializeField] private Stage _stage;
+    [SerializeField] private List<Stage> _stages = new List<Stage>();
     private CompositeDisposable _disposable = new CompositeDisposable();
+    private Shop _shop;
+    private int _index;
     private BlindSelector _blindSelector;
 
     [Inject]
-    public void Construct(BlindSpawner blindSpawner)
+    public void Construct(BlindSpawner blindSpawner, Shop shop)
     {
         _blindSelector = blindSpawner.Selector.Value;
+        _shop = shop;
+        _shop.ShopDeactivated += OnStageSwitching;
+        RoundWinLose.Winned += OnStageSwitching;
         blindSpawner.Selector.Subscribe(_ =>
         {
             if (_ == null)
@@ -31,20 +34,25 @@ public class GameStageSwitcher : MonoBehaviour
                 return;
             }
             _blindSelector = _;
-            _blindSelector.BlindSelected += OnBlindSelected;
+            _blindSelector.ButtonCliked += OnStageSwitching;
         }).AddTo(_disposable);
     }
 
-    private void OnBlindSelected(IBlindViewable blindViewable)
+    private void OnStageSwitching()
     {
+        _index++;
+        if (_index > _stages.Count - 1)
+            _index = 0;
         _previoseStage.SetActive(false);
-        _previoseStage = _stageObjects[_stage.BlindPanel];
+        _previoseStage = _stages[_index].StageObject;
         _previoseStage.SetActive(true);
     }
 
 
     private void OnDisable()
     {
-        _blindSelector.BlindSelected -= OnBlindSelected;
+        _blindSelector.ButtonCliked -= OnStageSwitching;
+        _shop.ShopDeactivated -= OnStageSwitching;
+        RoundWinLose.Winned -= OnStageSwitching;
     }
 }

@@ -18,8 +18,8 @@ MonoBehaviour:
     <BlindConditions>k__BackingField:
       rid: 109521588371062784
   <Sprite>k__BackingField: {fileID: 21300000, guid: 95b6faaf055323945b6e1667381e9e9d, type: 3}
-  <Name>k__BackingField: DDWdaw
-  <GoalScore>k__BackingField: 1433
+  <Name>k__BackingField: Special
+  <GoalScore>k__BackingField: 100
   references:
     version: 2
     RefIds:
