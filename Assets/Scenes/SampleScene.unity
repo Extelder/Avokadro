@@ -1131,6 +1131,7 @@ GameObject:
   - component: {fileID: 531755149}
   - component: {fileID: 531755150}
   - component: {fileID: 531755151}
+  - component: {fileID: 531755152}
   m_Layer: 0
   m_Name: CONTEXT
   m_TagString: Untagged
@@ -1152,6 +1153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scriptableObjectInstallers: []
   _monoInstallers:
+  - {fileID: 531755152}
   - {fileID: 531755150}
   - {fileID: 531755147}
   - {fileID: 531755148}
@@ -1377,6 +1379,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _shopConfig: {fileID: 11400000, guid: 8d4da537a35cc304f804fdc33fb1c34e, type: 2}
   _shopUi: {fileID: 1955894649}
+--- !u!114 &531755152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 531755136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3fbe390ebf7af74c8f0681add78b427, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _blindSortPrefab: {fileID: 807136707067535647, guid: 3fd98b6406f1b4745b597b372612485d, type: 3}
+  _spawnPoint: {fileID: 1079256819}
 --- !u!1 &572288927
 GameObject:
   m_ObjectHideFlags: 0
@@ -2580,7 +2596,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1417853022
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3213,6 +3229,7 @@ GameObject:
   - component: {fileID: 1955894647}
   - component: {fileID: 1955894646}
   - component: {fileID: 1955894649}
+  - component: {fileID: 1955894650}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -3320,6 +3337,26 @@ MonoBehaviour:
   _shopPanel: {fileID: 1388075132}
   _offShopButton: {fileID: 1604795336}
   <SpawnPoint>k__BackingField: {fileID: 1008177738}
+--- !u!114 &1955894650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1955894644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7838c9121b56af4ca9315e5e53e6201, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _stageObjects:
+  - {fileID: 816938432}
+  - {fileID: 1417853021}
+  - {fileID: 1388075132}
+  _previoseStage: {fileID: 1417853021}
+  _stage:
+    <MainPanel>k__BackingField: 0
+    <BlindPanel>k__BackingField: 0
 --- !u!1 &1968421028
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,8 +8,8 @@ using Zenject;
 [Serializable]
 public struct Stage
 {
-    public int MainPanel { get; set; }
-    public int BlindPanel { get; set; }
+   [field: SerializeField] public int MainPanel { get; set; }
+   [field: SerializeField] public int BlindPanel { get; set; }
 }
 
 public class GameStageSwitcher : MonoBehaviour
