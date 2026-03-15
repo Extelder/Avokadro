@@ -23,6 +23,7 @@ public class BlindSelector
 
     private void OnBlindSelected(IBlindViewable blindViewable)
     {
+        Debug.Log("SELECTEEED");
         BlindSelected?.Invoke(blindViewable);
     }
 }
